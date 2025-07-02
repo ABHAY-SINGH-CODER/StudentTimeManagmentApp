@@ -35,13 +35,13 @@
     .display{
 
         display: grid;
-        height: 100vh;
+        height: 1800px;
         width: 100%;
         background-color: #f9f9f9;
 
         /*Grid property*/
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 3fr 3fr 3fr;
+        grid-template-rows: 100px 3fr 3fr 800px;
         grid-template-areas: 
         "nav nav"
         "addl analyse"
@@ -55,19 +55,88 @@
     }
 
     .Nav{
+        position: sticky;
+        z-index:1000;
         grid-area: nav;
+        top:0px;
 
-        max-height: 60px;
-        min-height: 40px;
+        max-height: 70px;
+        min-height: 50px;
+       
+        background-color: #fdfdfd;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        border: 1px solid #ddd;
 
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        padding-left :2%;
+        padding-right: 2%;
+        column-gap: 50px;
         
 
     }
 
+
+
+    .Nav .item{
+        width:inline;
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 20px;
+        color: #333;
+        
+      
+
+    }
+
+        #nav-title{
+        font-size: 34px;
+        color: #333;
+        line-height: 1.5;
+        font-weight: 900;
+        position: relative;
+        margin-right: auto;
+        
+    }
+
+ 
     .To-do-list-description{
         grid-area: addl;
+        display: grid;
+
+        /*Padding Values*/
+        padding-top: 40px;
+        padding-left:40px;
+        padding-right:40px;
+        padding-bottom:40px;
+
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto 2fr 100px;
+        row-gap: 20px;
  
     }
+
+     #task-title{
+
+        font-size: 40px;
+        color: #333;
+        line-height: 1.5;
+        font-weight: 900;
+        
+     }
+     
+
+      .To-do-list-description p{
+        font-size: 24px;
+        margin-bottom: 10px;
+
+      }
+
 
     .Graphic-Analysis{
         grid-area: analyse;
@@ -81,30 +150,93 @@
 
     .list{
         grid-area:list;
+        min-height: 1000px;
 
     }
 
-    .Nav , .list ,.Graphic-Analysis,.Text-Analysis,.To-do-list-description{
+     .list ,.Graphic-Analysis,.Text-Analysis,.To-do-list-description{
         
         background-color: #fdfdfd;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         border-radius: 8px;
         border: 1px solid #ddd;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 900;
-        font-size: 30px;
 
     }
+
+    #task-heading{
+        width:100%;
+        height:50px;
+        border-radius:10px;
+        border:rgb(181, 180, 180) 1px solid;
+          font-size: 25px;
+           padding-left:15px;
+           overflow: scroll;
+
+       
+      
+    }
+
+    #task-heading:focus{
+
+        border:rgb(54, 54, 54) 1px solid;
+        outline: none;
+        padding-left:15px;
+        font-size: 25px;
+
+    }
+
+    #task-description-box{
+
+        width:100%;
+        border-radius:10px;
+        height: 80% ;
+        border:rgb(181, 180, 180) 1px solid;
+        font-size: 25px;
+         padding-left:15px;
+         font-style: italic;
+         overflow: scroll;
+          padding-top:10px;
+
+    }
+
+
+    #task-description-box:focus{
+        border:rgb(54, 54, 54) 1px solid;
+        outline: none;
+        padding-left:15px;
+        font-size: 25px;
+        overflow: scroll;
+    }
+
+    #save-btn{
+
+         border-radius:10px;
+         height:60px;
+         color:white;
+         background: rgb(200, 2, 255);
+         border:rgb(181, 180, 180) 1px solid;
+         font-size: 20px;
+         font-weight: 100;
+         letter-spacing: 3px;
+    }
+
+     #save-btn:hover{
+
+       transform: scale(1.05);
+        background: rgb(218, 85, 255);
+    }
+
+
+
+
 
     /*For mobile layout */
 
     @media (max-width: 1000px) {
   .display {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 5fr 1fr 1fr 1fr;
+    grid-template-rows: 100px 1fr 1fr 1fr 500px;
     grid-template-areas:
       "nav"
       "addl"
@@ -113,6 +245,19 @@
       "list";
   }
 
+  .Nav{
+    column-gap: 10px;
+  }
+
+  #nav-title{
+    font-size: 20px;
+        color: #333;
+        line-height: 1.5;
+        font-weight: 900;
+        position: relative;
+        margin-right: auto;
+        
+  }
   .To-do-list-description{
     min-height: 400px;
   }
@@ -125,6 +270,8 @@
 
 
 
+
+
 </style>
 <body class = 'light'>
 
@@ -132,12 +279,30 @@
         <!--To display main content-->
         <div class = 'Nav'>
             <!--Navigation bar-->
-            TO DO LIST
+            <div class = 'item' id = 'nav-title'>To-Do List</div>
+            
+            <div class = 'item' id = 'home'>Home</div>
+            <div class = 'item' id = 'theme'>Theme</div>
+            <div class = 'item' id = 'motiv'>Quotes</div>
+            <div class = 'item' id = 'About'>About </div>
+
         </div>
 
         <div class = 'To-do-list-description'>
             <!--Where list will be add-->
-            DESCRIPTION
+            <p id = 'task-title'>Edit Task</p>
+
+            <div id = 'task-name'>
+            <p>Name</p>
+            <input type = 'text' id = 'task-heading' placeholder="Physics 10 Question">
+            </div>
+
+            <div id = 'task-description'>
+            <p>Description</p>
+            <textarea id = 'task-description-box' placeholder="Time : 2hr"></textarea>
+            </div>
+
+            <button id = 'save-btn'>Save</button>
         </div>
 
         <div class = 'Graphic-Analysis'>
