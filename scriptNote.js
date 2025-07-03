@@ -54,9 +54,28 @@ saveButton.addEventListener('click', () => {
         //clear the input fields after saving
         document.getElementById('task-heading').value = '';
         document.getElementById('task-description-box').value = '';
+
+        // Save the notes to local storage
+        localStorage.setItem('notes', JSON.stringify(Notes));
     }
 
 } );
 
+console.log(Notes); // For debugging purpose
+console.log(Notes.length)
+
+function loadNotes() {
+    // Load notes from local storage
+    let savedNotes = localStorage.getItem('notes');
+    if (savedNotes) {
+        Notes = JSON.parse(savedNotes);
+        Notes.forEach(note => render_a_note(note));
+    }
+
+    localStorage.removeItem('notes'); // Remove this line if you want to keep the notes in local storage
+}
+
+
+loadNotes();
 
 
