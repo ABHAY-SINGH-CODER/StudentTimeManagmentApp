@@ -130,7 +130,7 @@
         margin-bottom: 10px;
 
       }
-
+   
 
     .Graphic-Analysis{
         grid-area: analyse;
@@ -165,7 +165,7 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         border-radius: 8px;
         border: 1px solid #ddd;
-        border-left:5px rgba(255, 187, 0, 0.864) solid;
+        border-left:5px yellow solid;
         padding-left:20px;
 
         display: flex;
@@ -185,7 +185,7 @@
         width: auto;
         padding: 1px 50px;
         border-radius: 20px;
-        background-color: rgba(255, 187, 0, 0.864);
+        background-color: yellow;
     }
 
     .name-task{
@@ -207,6 +207,28 @@
         border: 1px solid #ddd;
 
 
+    }
+
+    #complete-btn{
+        background-color: rgb(0, 128, 0);
+        color: white;
+        border-radius: 10px;
+        height: 40px;
+        width: 100px;
+        border:none;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    #delete-btn{
+        background-color: rgb(255, 0, 0);
+        color: white;
+        border-radius: 10px;
+        height: 40px;
+        width: 100px;
+        border:none;
+        font-size: 12px;
+        cursor: pointer;
     }
 
     #task-heading{
@@ -273,6 +295,47 @@
         background: rgb(218, 85, 255);
     }
 
+    #display-description{
+     height : 500px;
+     width : 700px;
+   
+     z-index:9999;
+     position:fixed;
+     top:50%;
+     left:50%;
+     transform: translate(-50%, -50%);
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+      display: none;
+      box-shadow: 0 2px 8px rgba(0, 0,0,0.15);
+      border: 1px solid #ddd;
+
+      padding: 20px;
+      color:rgb(0, 0, 0);
+
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow: scroll;
+      row-gap: 10px;
+
+
+    
+  }
+
+  #close-btn{
+    background-color: rgb(74, 74, 74);
+    position:fixed;
+    bottom:40px;
+    color: white;
+    height:40px;
+    width: 100px;
+    border:none;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
 
 
 
@@ -293,6 +356,11 @@
   .Nav{
     column-gap: 10px;
   }
+
+ 
+
+
+  
 
   #nav-title{
     font-size: 20px;
