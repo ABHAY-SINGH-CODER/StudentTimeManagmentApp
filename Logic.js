@@ -1,6 +1,8 @@
 //This we will use to take input from uset and store it in local storage 
 
-let Notes = [];
+let Notes = []; // Initialize Notes from local storage or as an empty array
+let TotalNotes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : [];
+console.log(Notes); // For debugging purpose
 let taskSelector = document.querySelectorAll('.task-slab');
 
 
@@ -89,8 +91,7 @@ taskSelector.forEach((task, index) => {
             localStorage.setItem('notes', JSON.stringify(Notes)); // Update local storage
             task.remove(); // Remove the task slab from the UI
             displayDescription.style.display = 'none'; // Hide the description popup
-
-        render_graphic(Notes[index]); // Update the task slab graphic
+            render_circle();
         });
 
     });
@@ -149,6 +150,9 @@ function loadNotes() {
         taskSelector.forEach((task, index) => {
             render_graphic(Notes[index]);
         });
+
+
+    render_circle();
     }
 
      // Remove this line if you want to keep the notes in local storage
@@ -166,12 +170,14 @@ loadNotes();
 Updatestate();
 
 function render_circle(){
+    TotalNotes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : [];
+    console.log(Notes);
     let circle = document.querySelector('.circle');
     let innerCircle = document.querySelector('.inner-circle');
     
     // Calculate the percentage of completed tasks
-    let completedTasks = Notes.filter(note => note.status === status_options[1]).length;
-    let totalTasks = Notes.length;
+    let completedTasks = TotalNotes.filter(note => note.status === status_options[1]).length;
+    let totalTasks = TotalNotes.length;
 
     
     let completionPercentage = Math.round((completedTasks / totalTasks) * 100);
@@ -188,7 +194,7 @@ render_circle();
 
   let innerCircle = document.querySelector('.inner-circle');
   innerCircle.addEventListener('mouseenter', () => {
-    innerCircle.innerHTML = `${Notes.filter(note => note.status === status_options[1]).length}<span class = 'tit'>/</span>${Notes.length}`;
+    innerCircle.innerHTML = `${TotalNotes.filter(note => note.status === status_options[1]).length}<span class = 'tit'>/</span>${TotalNotes.length}`;
   });
 
   innerCircle.addEventListener('mouseleave', () => {
