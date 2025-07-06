@@ -47,6 +47,8 @@ function render_graphic(note){
         Anote.querySelector('.status').style.color = "white"; // Change text color to white for better visibility
     
     }
+    render_circle();
+    Updatestate(); // Update the event listeners for the task slab
 }
 
 function Updatestate(){
@@ -127,6 +129,7 @@ saveButton.addEventListener('click', () => {
         localStorage.setItem('notes', JSON.stringify(Notes));
         render_graphic(newNote);
 
+
         taskSelector = document.querySelectorAll('.task-slab');
         Updatestate(); // Update the event listeners for the new task slabs
     }
@@ -161,3 +164,24 @@ loadNotes();
 
 
 Updatestate();
+
+function render_circle(){
+    let circle = document.querySelector('.circle');
+    let innerCircle = document.querySelector('.inner-circle');
+    
+    // Calculate the percentage of completed tasks
+    let completedTasks = Notes.filter(note => note.status === status_options[1]).length;
+    let totalTasks = Notes.length;
+
+    
+    let completionPercentage = Math.round((completedTasks / totalTasks) * 100);
+    
+    circle.style.background = `conic-gradient(green 0deg ${completionPercentage * 3.0}deg,rgba(255, 119, 0, 0.508) ${completionPercentage * 3.0}deg 300deg,transparent 300deg 360deg)`;
+    if( completionPercentage === 0){
+        innerCircle.textContent = '-/--';
+    }
+    else if (completionPercentage != 100) {
+    innerCircle.innerHTML= `${completionPercentage}<span class = "norm">%</span>`;}
+}
+
+render_circle();
