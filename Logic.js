@@ -180,8 +180,46 @@ function render_circle(){
     if( completionPercentage === 0){
         innerCircle.textContent = '-/--';
     }
-    else if (completionPercentage != 100) {
+    else if (completionPercentage != 0) {
     innerCircle.innerHTML= `${completionPercentage}<span class = "norm">%</span>`;}
 }
 
 render_circle();
+
+  let innerCircle = document.querySelector('.inner-circle');
+  innerCircle.addEventListener('mouseenter', () => {
+    innerCircle.innerHTML = `${Notes.filter(note => note.status === status_options[1]).length}<span class = 'tit'>/</span>${Notes.length}`;
+  });
+
+  innerCircle.addEventListener('mouseleave', () => {
+    render_circle();
+  });
+
+
+
+  function toggleTheme() {
+    const lightTheme = document.getElementById('light-theme');
+    const darkTheme = document.getElementById('dark-theme');
+
+    const isDark = !darkTheme.disabled;
+
+    if (isDark) {
+      // Switch to light theme
+      darkTheme.disabled = true;
+      lightTheme.disabled = false;
+      localStorage.setItem('theme', 'light');
+    } else {
+      // Switch to dark theme
+      darkTheme.disabled = false;
+      lightTheme.disabled = true;
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  // Auto-load saved theme on page load
+  window.onload = () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.getElementById('dark-theme').disabled = savedTheme !== 'dark';
+    document.getElementById('light-theme').disabled = savedTheme !== 'light';
+  };
+
