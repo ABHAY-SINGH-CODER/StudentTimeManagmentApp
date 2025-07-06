@@ -9,8 +9,21 @@
         user-select: none;
         
     }
+    /* Add this in both light.css and dark.css */
+body,
+.display,
+.Nav,
+.task-slab,
+.To-do-list-description,
+.Graphic-Analysis,
+.Text-Analysis,
+#display-description,
+#task-heading,
+#task-description-box {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
 
-    body.light{
+    body{
        
     background: #f9f9f9;
     height:auto;

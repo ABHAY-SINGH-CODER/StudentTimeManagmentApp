@@ -197,29 +197,59 @@ render_circle();
 
 
 
-  function toggleTheme() {
+// Theme Toggle Function
+function toggleTheme() {
     const lightTheme = document.getElementById('light-theme');
     const darkTheme = document.getElementById('dark-theme');
-
-    const isDark = !darkTheme.disabled;
-
-    if (isDark) {
-      // Switch to light theme
-      darkTheme.disabled = true;
-      lightTheme.disabled = false;
-      localStorage.setItem('theme', 'light');
+    console.log(lightTheme);
+    const themeButton = document.getElementById('theme');
+    
+    // Check which theme is currently active
+    if (lightTheme.disabled === false) {
+        // Switch to dark theme
+        lightTheme.disabled = true;
+        darkTheme.disabled = false;
+        
+        // Update button text
+        themeButton.textContent = '☀️ Light';
+        
+        // Save preference
+        localStorage.setItem('theme', 'dark');
     } else {
-      // Switch to dark theme
-      darkTheme.disabled = false;
-      lightTheme.disabled = true;
-      localStorage.setItem('theme', 'dark');
+        // Switch to light theme
+        lightTheme.disabled = false;
+        darkTheme.disabled = true;
+        
+        // Update button text
+        themeButton.textContent = '🌙 Dark';
+        
+        // Save preference
+        localStorage.setItem('theme', 'light');
     }
-  }
+}
 
-  // Auto-load saved theme on page load
-  window.onload = () => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.getElementById('dark-theme').disabled = savedTheme !== 'dark';
-    document.getElementById('light-theme').disabled = savedTheme !== 'light';
-  };
+// Load saved theme when page loads
+function loadSavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const lightTheme = document.getElementById('light-theme');
+    const darkTheme = document.getElementById('dark-theme');
+    const themeButton = document.getElementById('theme');
+    
+    if (savedTheme === 'dark') {
+        lightTheme.disabled = true;
+        darkTheme.disabled = false;
+        themeButton.textContent = '☀️ Light';
+    } else {
+        // Default to light theme
+        lightTheme.disabled = false;
+        darkTheme.disabled = true;
+        themeButton.textContent = '🌙 Dark';
+    }
+}
 
+// Initialize theme when page loads
+document.addEventListener('DOMContentLoaded', loadSavedTheme);
+
+
+let b = document.getElementById('theme');
+b.addEventListener('click', toggleTheme);
